@@ -4,13 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="Styles/login-signup.css" />
+    <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <title>Star Bank</title>
   </head>
   <body>
+    <!-- LOGIN PAGE -->
     <div class="login_container">
       <h1 class="login_heading">LOGIN</h1>
+      <!-- CREDITINALS -->
       <form class="login">
         <div class="login_mail_section">
           <span class="desc">Email</span>
@@ -22,12 +24,25 @@
         </div>
         <button class="login_btn">login</button>
       </form>
-      <p class="desc">or</p>
+      <p class="desc options">or</p>
+      <!-- DIFFERENT AUTHO OPTIONS -->
+      <div class="login_auths">
+        <ion-icon name="logo-google"></ion-icon>
+        <ion-icon name="logo-facebook"></ion-icon>
+        <ion-icon name="logo-apple"></ion-icon>
+      </div>
     </div>
 
-    <!-- If the user wants to sign up the login should disapper vice versa -->
-    <div class="signup-container"></div>
+    <!-- BANKING PAGE -->
 
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
     <script src="script.js"></script>
   </body>
 </html>

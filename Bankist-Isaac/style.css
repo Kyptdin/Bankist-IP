@@ -60,10 +60,39 @@ body {
 }
 
 .login_btn {
-  background-color: #444;
+  /* background-color: #444; */
   border: none;
   width: 100%;
   color: white;
   padding: 1rem 2rem;
   border-radius: 9px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  background-image: linear-gradient(
+    to right,
+    #a1c4fd 0%,
+    #c2e9fb 51%,
+    #a1c4fd 100%
+  );
+}
+
+.login_btn:hover {
+  background-position: right center;
+  cursor: pointer;
+}
+
+p.options {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.login_auths {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.login_auths ion-icon {
+  font-size: 2.5rem;
 }
