@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/general.css" />
     <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon" />
     <title>Star Bank</title>
   </head>
   <body>
     <!-- LOGIN PAGE -->
-    <div class="login_container">
+    <div class="login_container hidden">
       <h1 class="login_heading">LOGIN</h1>
       <!-- CREDITINALS -->
       <form class="login">
@@ -39,6 +40,32 @@
     </div>
 
     <!-- BANKING PAGE -->
+    <div class="app-container">
+      <nav class="banking_nav container">
+        <p class="welcome">Hi there,</p>
+        <img
+          src="images/bankLogo.png"
+          alt="banking logo"
+          class="banking_logo"
+        />
+        <button class="logout_btn">Logout</button>
+      </nav>
+
+      <main class="app container--app">
+        <header class="app_header">
+          <p class="balance_label">Current balance</p>
+          <p class="balance_value">$20,000</p>
+        </header>
+        <!-- Movements -->
+        <div class="movements">
+          <div class="movements_row">
+            <div class="movments_type movements_type--deposit">8 Deposit</div>
+            <div class="movements_date">1/2/2022</div>
+            <div class="movements_value">$100</div>
+          </div>
+        </div>
+      </main>
+    </div>
 
     <script
       type="module"

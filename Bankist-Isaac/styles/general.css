@@ -1,0 +1,36 @@
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.container {
+  max-width: 120rem;
+  padding: 0 3.2rem;
+  margin: 0 auto;
+}
+
+.container--app {
+  max-width: 100rem;
+  padding: 0 6.4rem;
+  margin: 0 auto;
+}
+
+.movments_type {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #fff;
+  padding: 0.1rem 1rem;
+  border-radius: 10rem;
+  margin-right: 2rem;
+  display: inline-block;
+}
+
+.movements_type--deposit {
+  background-image: linear-gradient(
+    to right,
+    #84fab0 0%,
+    #8fd3f4 51%,
+    #84fab0 100%
+  );
+}

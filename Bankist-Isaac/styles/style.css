@@ -101,7 +101,76 @@ p.options {
   cursor: pointer;
 }
 
-.hidden {
-  visibility: hidden;
-  opacity: 0;
+/**********************BANKING PAGE***************************/
+.banking_logo {
+  width: 6.4rem;
+  height: 6.4rem;
+}
+/* Horizontaly align the nav */
+.banking_nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  margin-top: 1rem;
+}
+/* Fix the logout button  */
+.logout_btn {
+  transition: all 1s;
+  border: none;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 9px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  background-image: linear-gradient(
+    to right,
+    #a1c4fd 0%,
+    #c2e9fb 51%,
+    #a1c4fd 100%
+  );
+}
+/* Fix the welcome message */
+.welcome {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.app_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+}
+
+.balance_label {
+  font-size: 2.5rem;
+}
+.balance_value {
+  font-size: 5rem;
+}
+
+.movements {
+  overflow: scroll;
+}
+
+.movements_row {
+  padding: 2.25rem 4rem;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.movements_date {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #666;
+}
+
+.movements_value {
+  font-size: 2rem;
+  margin-left: auto;
+  font-weight: 600;
 }

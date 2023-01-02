@@ -48,9 +48,18 @@ const diplayBanking = function (b) {
   }
 };
 
+//Clears the input fields
+const clearLogin = function () {
+  inputLoginEmail.value = "";
+  inputLoginPassword.value = "";
+};
+
 // Prints the alert if email or password is wrong
 const displayError = function (e, m) {
-  if (!e || !m) alert("Wrong input!");
+  clearLogin();
+  if (!e || !m) {
+    alert("Wrong input!");
+  }
 };
 
 const checkVaildLogin = function (e) {
