@@ -11,7 +11,7 @@
   </head>
   <body>
     <!-- LOGIN PAGE -->
-    <div class="login_container hidden">
+    <div class="login_container">
       <h1 class="login_heading">LOGIN</h1>
       <!-- CREDITINALS -->
       <form class="login">
@@ -40,7 +40,7 @@
     </div>
 
     <!-- BANKING PAGE -->
-    <div class="app-container">
+    <div class="app-container hidden">
       <nav class="banking_nav container">
         <p class="welcome">Hi there,</p>
         <img
@@ -56,13 +56,34 @@
           <p class="balance_label">Current balance</p>
           <p class="balance_value">$20,000</p>
         </header>
+        <div class="movments_options">
+          <button class="movments_options_btn movments_options_btn-transfer">
+            Transfer
+          </button>
+          <button class="movments_options_btn movments_options_btn-request">
+            Request
+          </button>
+          <button class="movments_options_btn movments_options_btn-close">
+            Close
+          </button>
+        </div>
         <!-- Movements -->
         <div class="movements">
           <div class="movements_row">
-            <div class="movments_type movements_type--deposit">8 Deposit</div>
+            <div class="movements_type movements_type--deposit">8 Deposit</div>
             <div class="movements_date">1/2/2022</div>
             <div class="movements_value">$100</div>
           </div>
+        </div>
+
+        <div class="summary">
+          <p class="summary_label">IN</p>
+          <p class="summary_value summary_value--in">$26,000</p>
+          <p class="summary_label">OUT</p>
+          <p class="summary_value summary_value--out">$26,000</p>
+          <p class="summary_label">INTEREST</p>
+          <p class="summary_value summary_value--interest">$26,000</p>
+          <button class="sort_btn">&#x2193; SORT</button>
         </div>
       </main>
     </div>

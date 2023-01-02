@@ -34,7 +34,7 @@ body {
   width: 35vw;
   background-color: white;
   box-shadow: 0 4.8rem 9.6rem rgb(0 0 0 / 25%);
-  transition: all 0.75s;
+  /* transition: all 1s; */
 }
 
 .login_mail_section,
@@ -129,6 +129,7 @@ p.options {
     #c2e9fb 51%,
     #a1c4fd 100%
   );
+  cursor: pointer;
 }
 /* Fix the welcome message */
 .welcome {
@@ -141,6 +142,7 @@ p.options {
   justify-content: space-between;
   align-items: center;
   font-weight: 500;
+  margin-bottom: 1.5rem;
 }
 
 .balance_label {
@@ -152,6 +154,9 @@ p.options {
 
 .movements {
   overflow: scroll;
+  max-height: 50vh;
+  box-shadow: 0 4.8rem 9.6rem rgb(0 0 0 / 8%);
+  border-radius: 20px;
 }
 
 .movements_row {
@@ -173,4 +178,53 @@ p.options {
   font-size: 2rem;
   margin-left: auto;
   font-weight: 600;
+}
+
+.movments_options {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 1.5rem;
+}
+
+.summary_label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-right: 0.8rem;
+}
+
+.summary_value {
+  font-size: 2.2rem;
+  margin-right: 2.5rem;
+  font-weight: 600;
+}
+
+.summary_value--in {
+  color: #39b385;
+}
+
+.summary_value--out {
+  color: #e52a5a;
+}
+
+.summary_value--interest {
+  color: #39b385;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sort_btn {
+  font-family: inherit;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.app_container {
+  transition: all 1s;
 }
