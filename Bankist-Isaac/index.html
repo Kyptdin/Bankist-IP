@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon" />
     <title>Star Bank</title>
   </head>
   <body>
@@ -16,11 +16,16 @@
       <form class="login">
         <div class="login_mail_section">
           <span class="desc">Email</span>
-          <input type="email" class="login_input login_email" />
+          <input type="email" class="login_input login_email" required />
         </div>
         <div class="login_password_section">
           <span class="desc">Password</span>
-          <input type="password" maxlength="8" class="login_input login_pass" />
+          <input
+            type="password"
+            minlength="8"
+            class="login_input login_pass"
+            required
+          />
         </div>
         <button class="login_btn">login</button>
       </form>
