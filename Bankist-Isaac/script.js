@@ -31,6 +31,8 @@ const totalBalance = document.querySelector(".balance_value");
 const summaryIn = document.querySelector(".summary_value--in");
 const summaryOut = document.querySelector(".summary_value--out");
 const summaryInterest = document.querySelector(".summary_value--interest");
+const logoutBtn = document.querySelector(".logout_btn");
+const movementsContainer = document.querySelector(".movements");
 
 //Finds the acount with the inputted email
 const findTargetAccount = function (exist, mailInput) {
@@ -84,12 +86,36 @@ const displaySummary = function (targetAcc) {
   summaryInterest.textContent = `${totalInterest}`;
 };
 
+const displayMovments = function (targetAcc, sort = false) {
+  let i = 1;
+  let html;
+
+  if (sort) {
+    //Create a copy array going from least to greatest
+    // const greatestToLeast
+    //Create the html string
+    //Add the html
+  } else {
+    for (const mov of targetAcc.movements) {
+      html = `<div class="movements_row">
+            <div class="movements_type movements_type--deposit">${i} Deposit</div>
+            <div class="movements_date">1/2/2022</div>
+            <div class="movements_value">$${mov}</div>
+          </div>`;
+
+      movementsContainer.insertAdjacentHTML("afterbegin", html);
+      i++;
+    }
+  }
+};
+
 //Display the banking system if inputs are correct
-const diplayBanking = function (b, targetAcc) {
-  if (b) {
+const diplayBanking = function (match, targetAcc) {
+  if (match) {
     loginModal.classList.toggle("hidden");
     bankingUI.classList.toggle("hidden");
     displaySummary(targetAcc);
+    displayMovments(targetAcc);
   }
 };
 
@@ -135,3 +161,11 @@ const checkVaildLogin = function (e) {
 };
 
 btnLogin.addEventListener("click", checkVaildLogin);
+
+// Logout button
+logoutBtn.addEventListener("click", function () {
+  loginModal.classList.toggle("hidden");
+  bankingUI.classList.toggle("hidden");
+  welcomeMessage.textContent = "Hi there,";
+  movementsContainer.innerHTML = "";
+});
