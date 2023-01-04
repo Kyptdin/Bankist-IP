@@ -39,6 +39,11 @@ const openTransferBtn = document.querySelector(
 );
 const transferModal = document.querySelector(".options_modal--transfer");
 const closeModalBtn = document.querySelectorAll(".close_modal_btn");
+const transferBtn = document.querySelector(".form_btn--transfer");
+const balanceLabel = document.querySelector(".balance_value");
+// Transfer modal
+const toAccountInput = document.querySelector(".form_input--to");
+const amountTransfer = document.querySelector(".form_input--amount");
 
 /**DOM ELEMENTS BANKING OPTIONS***********************/
 //Finds the acount with the inputted email
@@ -62,11 +67,11 @@ const checkPassMatchEmail = function (inputPass, tarAccount) {
 //Displays the name,total balance,in, out, interest,and movments
 const displaySummary = function (targetAcc) {
   //Take the text content of the welcome and add the name of the current user
-  welcomeMessage.textContent = `${welcomeMessage.textContent} ${targetAcc.name}`;
+  welcomeMessage.textContent = `Hi there, ${targetAcc.name}`;
   // totalBalance.textContent = targetAcc.movements.reduce();
   const total = targetAcc.movements.reduce((acc, mov) => acc + mov, 0);
   totalBalance.textContent = `$${total}`;
-  summaryOut;
+
   const totalDeposit = targetAcc.movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
@@ -92,9 +97,20 @@ const displaySummary = function (targetAcc) {
 };
 
 let sort = false;
+// let html;
+
+const determineMov = function (m) {
+  if (m > 0) {
+    return "deposit";
+  } else {
+    return "withdrawal";
+  }
+};
+
 const displayMovments = function (targetAcc, sort = false) {
   let i = 1;
   let html;
+
   movementsContainer.innerHTML = "";
   if (sort) {
     const greatestToLeast = targetAcc.movements
@@ -103,7 +119,9 @@ const displayMovments = function (targetAcc, sort = false) {
 
     for (const mov of greatestToLeast) {
       html = `<div class="movements_row">
-              <div class="movements_type movements_type--deposit">${i} Deposit</div>
+              <div class="movements_type movements_type--${determineMov(
+                mov
+              )}">${i} ${determineMov(mov)}</div>
               <div class="movements_date">1/2/2022</div>
               <div class="movements_value">$${mov}</div>
             </div>`;
@@ -113,10 +131,12 @@ const displayMovments = function (targetAcc, sort = false) {
   } else {
     for (const mov of targetAcc.movements) {
       html = `<div class="movements_row">
-            <div class="movements_type movements_type--deposit">${i} Deposit</div>
-            <div class="movements_date">1/2/2022</div>
-            <div class="movements_value">$${mov}</div>
-          </div>`;
+              <div class="movements_type movements_type--${determineMov(
+                mov
+              )}">${i} ${determineMov(mov)}</div>
+              <div class="movements_date">1/2/2022</div>
+              <div class="movements_value">$${mov}</div>
+            </div>`;
 
       movementsContainer.insertAdjacentHTML("afterbegin", html);
       i++;
@@ -125,10 +145,13 @@ const displayMovments = function (targetAcc, sort = false) {
 };
 
 //Display the banking system if inputs are correct
-const diplayBanking = function (match, targetAcc) {
-  if (match) {
+const diplayBanking = function (match, targetAcc, firstTime = true) {
+  if (match && firstTime) {
     loginModal.classList.toggle("hidden");
     bankingUI.classList.toggle("hidden");
+    displaySummary(targetAcc);
+    displayMovments(targetAcc, sort);
+  } else if (match && !firstTime) {
     displaySummary(targetAcc);
     displayMovments(targetAcc, sort);
   }
@@ -208,3 +231,29 @@ for (const btn of closeModalBtn) {
     transferModal.classList.toggle("hidden");
   });
 }
+
+//The transfer money button
+transferBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  const inputtedName = toAccountInput.value;
+  const inputtedAmount = amountTransfer.value;
+  const validName =
+    accounts.find((acc) => acc.name === inputtedName) &&
+    currentUser &&
+    currentUser?.name != inputtedName;
+
+  const validAmount =
+    inputtedAmount > 0 &&
+    inputtedAmount <=
+      currentUser.movements
+        .map((mov) => mov)
+        .reduce((acc, mov) => acc + mov, 0);
+
+  if (validName && validAmount) {
+    currentUser.movements.push(-inputtedAmount);
+    console.log(currentUser.movements);
+    diplayBanking(true, currentUser, false);
+  } else {
+    alert("Invalid transfer!");
+  }
+});
