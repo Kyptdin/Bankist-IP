@@ -33,7 +33,9 @@ const summaryOut = document.querySelector(".summary_value--out");
 const summaryInterest = document.querySelector(".summary_value--interest");
 const logoutBtn = document.querySelector(".logout_btn");
 const movementsContainer = document.querySelector(".movements");
+const sortBtn = document.querySelector(".sort_btn");
 
+/**DOM ELEMENTS BANKING OPTIONS***********************/
 //Finds the acount with the inputted email
 const findTargetAccount = function (exist, mailInput) {
   if (exist) {
@@ -58,7 +60,6 @@ const displaySummary = function (targetAcc) {
   welcomeMessage.textContent = `${welcomeMessage.textContent} ${targetAcc.name}`;
   // totalBalance.textContent = targetAcc.movements.reduce();
   const total = targetAcc.movements.reduce((acc, mov) => acc + mov, 0);
-  console.log(total);
   totalBalance.textContent = `$${total}`;
   summaryOut;
   const totalDeposit = targetAcc.movements
@@ -82,19 +83,28 @@ const displaySummary = function (targetAcc) {
     .map(mov => mov * (currentAccount.interestRate / 100))
     .filter(int => int > 1)
     .reduce((acc, cur) => acc + cur, 0); */
-  console.log(summaryInterest);
   summaryInterest.textContent = `${totalInterest}`;
 };
 
+let sort = false;
 const displayMovments = function (targetAcc, sort = false) {
   let i = 1;
   let html;
-
+  movementsContainer.innerHTML = "";
   if (sort) {
-    //Create a copy array going from least to greatest
-    // const greatestToLeast
-    //Create the html string
-    //Add the html
+    const greatestToLeast = targetAcc.movements
+      .map((mov) => mov)
+      .sort((curMov, nextMov) => curMov - nextMov);
+
+    for (const mov of greatestToLeast) {
+      html = `<div class="movements_row">
+              <div class="movements_type movements_type--deposit">${i} Deposit</div>
+              <div class="movements_date">1/2/2022</div>
+              <div class="movements_value">$${mov}</div>
+            </div>`;
+      movementsContainer.insertAdjacentHTML("afterbegin", html);
+      i++;
+    }
   } else {
     for (const mov of targetAcc.movements) {
       html = `<div class="movements_row">
@@ -115,7 +125,7 @@ const diplayBanking = function (match, targetAcc) {
     loginModal.classList.toggle("hidden");
     bankingUI.classList.toggle("hidden");
     displaySummary(targetAcc);
-    displayMovments(targetAcc);
+    displayMovments(targetAcc, sort);
   }
 };
 
@@ -153,6 +163,7 @@ const checkVaildLogin = function (e) {
   const emailExist = accounts.some((acc) => acc.email === emailInput);
   //Return the object with the inputted email that exist
   const accountWithEmail = findTargetAccount(emailExist, emailInput);
+  currentUser = accountWithEmail;
   const emailPassMatch = checkPassMatchEmail(passwordInput, accountWithEmail);
   displayError(emailExist, emailPassMatch);
   // const currentUser = setCurrentUser(emailPassMatch, emailInput);
@@ -168,4 +179,15 @@ logoutBtn.addEventListener("click", function () {
   bankingUI.classList.toggle("hidden");
   welcomeMessage.textContent = "Hi there,";
   movementsContainer.innerHTML = "";
+});
+
+sortBtn.addEventListener("click", function () {
+  if (sort) {
+    sortBtn.innerHTML = "&#x2193; SORT";
+  } else {
+    sortBtn.innerHTML = "&uarr; SORT";
+  }
+  sort = !sort;
+
+  displayMovments(currentUser, sort);
 });
