@@ -34,6 +34,11 @@ const summaryInterest = document.querySelector(".summary_value--interest");
 const logoutBtn = document.querySelector(".logout_btn");
 const movementsContainer = document.querySelector(".movements");
 const sortBtn = document.querySelector(".sort_btn");
+const openTransferBtn = document.querySelector(
+  ".movments_options_btn-transfer"
+);
+const transferModal = document.querySelector(".options_modal--transfer");
+const closeModalBtn = document.querySelectorAll(".close_modal_btn");
 
 /**DOM ELEMENTS BANKING OPTIONS***********************/
 //Finds the acount with the inputted email
@@ -191,3 +196,15 @@ sortBtn.addEventListener("click", function () {
 
   displayMovments(currentUser, sort);
 });
+
+//Open transfer money btn
+openTransferBtn.addEventListener("click", function (e) {
+  transferModal.classList.toggle("hidden");
+});
+
+//closeModalBtn to clos all the options modal
+for (const btn of closeModalBtn) {
+  btn.addEventListener("click", function () {
+    transferModal.classList.toggle("hidden");
+  });
+}
