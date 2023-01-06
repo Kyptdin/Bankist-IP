@@ -244,6 +244,10 @@ p.options {
   background-image: linear-gradient(to top left, #ffb003, #ffcb03);
 }
 
+.options_modal--request {
+  background-image: linear-gradient(to top left, #39b385, #9be15d);
+}
+
 .form {
   display: grid;
   grid-template-columns: repeat(1, 1fr);

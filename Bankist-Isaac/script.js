@@ -39,11 +39,16 @@ const openTransferBtn = document.querySelector(
 );
 const transferModal = document.querySelector(".options_modal--transfer");
 const closeModalBtn = document.querySelectorAll(".close_modal_btn");
-const transferBtn = document.querySelector(".form_btn--transfer");
 const balanceLabel = document.querySelector(".balance_value");
 // Transfer modal
+const transferBtn = document.querySelector(".form_btn--transfer");
 const toAccountInput = document.querySelector(".form_input--to");
 const amountTransfer = document.querySelector(".form_input--amount");
+
+//Request modal
+const requestMoneyBtn = document.querySelector(".movments_options_btn-request");
+const requestModal = document.querySelector(".options_modal--request ");
+const requestMoneySubmit = document.querySelector(".form_btn--request");
 
 /**DOM ELEMENTS BANKING OPTIONS***********************/
 //Finds the acount with the inputted email
@@ -69,13 +74,15 @@ const displaySummary = function (targetAcc) {
   //Take the text content of the welcome and add the name of the current user
   welcomeMessage.textContent = `Hi there, ${targetAcc.name}`;
   // totalBalance.textContent = targetAcc.movements.reduce();
+  console.log(totalBalance.textContent + " before");
   const total = targetAcc.movements.reduce((acc, mov) => acc + mov, 0);
   totalBalance.textContent = `$${total}`;
+  console.log(totalBalance.textContent);
 
   const totalDeposit = targetAcc.movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  summaryIn.textContent = `${totalDeposit}`;
+  summaryIn.textContent = `$${totalDeposit}`;
 
   const totalWithdrawal = targetAcc.movements
     .filter((mov) => mov < 0)
@@ -207,6 +214,7 @@ logoutBtn.addEventListener("click", function () {
   bankingUI.classList.toggle("hidden");
   welcomeMessage.textContent = "Hi there,";
   movementsContainer.innerHTML = "";
+  totalBalance.textContent = "";
 });
 
 sortBtn.addEventListener("click", function () {
@@ -222,13 +230,16 @@ sortBtn.addEventListener("click", function () {
 
 //Open transfer money btn
 openTransferBtn.addEventListener("click", function (e) {
+  //ADD
   transferModal.classList.toggle("hidden");
 });
 
 //closeModalBtn to clos all the options modal
 for (const btn of closeModalBtn) {
-  btn.addEventListener("click", function () {
-    transferModal.classList.toggle("hidden");
+  //ADD
+  btn.addEventListener("click", function (e) {
+    requestModal.classList.add("hidden");
+    transferModal.classList.add("hidden");
   });
 }
 
@@ -250,10 +261,26 @@ transferBtn.addEventListener("click", function (e) {
         .reduce((acc, mov) => acc + mov, 0);
 
   if (validName && validAmount) {
-    currentUser.movements.push(-inputtedAmount);
+    currentUser.movements.push(Number(-inputtedAmount));
+    accounts
+      .find((acc) => acc.name === inputtedName)
+      .movements.push(Number(inputtedAmount));
     console.log(currentUser.movements);
     diplayBanking(true, currentUser, false);
   } else {
     alert("Invalid transfer!");
   }
+});
+
+//Request money opening button
+requestMoneyBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  // requestModal.classList.toggle("hidden");
+  requestModal.classList.toggle("hidden");
+});
+
+//Request money submission
+requestMoneySubmit.addEventListener("click", function (e) {
+  e.preventDefault();
+  requestModal.classList.toggle("hidden");
 });
