@@ -55,9 +55,6 @@ const amountRequested = document.querySelector(".form_input--amount--request");
 const openCloseAccountModalBtn = document.querySelector(
   ".movments_options_btn-close"
 );
-
-console.log(openCloseAccountModalBtn);
-
 const closeAccountModal = document.querySelector(
   ".options_modal--close-account"
 );
@@ -65,6 +62,7 @@ const closeAccountEmailInput = document.querySelector(".form_input--email");
 const closeAccountPasswordInput = document.querySelector(
   ".form_input--password"
 );
+const closeAccountSubmit = document.querySelector(".form_btn--close");
 
 /**DOM ELEMENTS BANKING OPTIONS***********************/
 //Finds the acount with the inputted email
@@ -314,6 +312,23 @@ requestMoneySubmit.addEventListener("click", function (e) {
 
 //Close account opening button
 openCloseAccountModalBtn.addEventListener("click", function () {
-  console.log("Reached");
   closeAccountModal.classList.toggle("hidden");
+});
+
+//Clsoe account submit button
+closeAccountSubmit.addEventListener("click", function (e) {
+  e.preventDefault();
+  console.log("Works");
+  if (accounts.some((acc) => acc.email === closeAccountEmailInput)) {
+    const tarAccount = accounts.find(
+      (acc) => acc.email === closeAccountEmailInput
+    );
+    if (tarAccount.password === closeAccountPasswordInput) {
+      const indexHi = accounts.indexOf(tarAccount);
+      console.log(indexHi);
+      console.log(accounts.indexOf(tarAccount));
+      // Hide the banking
+      //Show the login
+    }
+  }
 });
