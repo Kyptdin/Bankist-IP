@@ -58,3 +58,7 @@
 .movments_options_btn-close {
   background-image: linear-gradient(to top left, #e52a5a, #ff585f);
 }
+
+.options_modal--close-account {
+  background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+}

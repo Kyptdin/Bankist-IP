@@ -49,6 +49,22 @@ const amountTransfer = document.querySelector(".form_input--amount");
 const requestMoneyBtn = document.querySelector(".movments_options_btn-request");
 const requestModal = document.querySelector(".options_modal--request ");
 const requestMoneySubmit = document.querySelector(".form_btn--request");
+const amountRequested = document.querySelector(".form_input--amount--request");
+
+//Close account modal
+const openCloseAccountModalBtn = document.querySelector(
+  ".movments_options_btn-close"
+);
+
+console.log(openCloseAccountModalBtn);
+
+const closeAccountModal = document.querySelector(
+  ".options_modal--close-account"
+);
+const closeAccountEmailInput = document.querySelector(".form_input--email");
+const closeAccountPasswordInput = document.querySelector(
+  ".form_input--password"
+);
 
 /**DOM ELEMENTS BANKING OPTIONS***********************/
 //Finds the acount with the inputted email
@@ -240,6 +256,7 @@ for (const btn of closeModalBtn) {
   btn.addEventListener("click", function (e) {
     requestModal.classList.add("hidden");
     transferModal.classList.add("hidden");
+    closeAccountModal.classList.add("hidden");
   });
 }
 
@@ -282,5 +299,21 @@ requestMoneyBtn.addEventListener("click", function (e) {
 //Request money submission
 requestMoneySubmit.addEventListener("click", function (e) {
   e.preventDefault();
+  const amountRequest = Number(amountRequested.value);
+  const limit =
+    currentUser.movements.map((mov) => mov).reduce((acc, mov) => acc + mov, 0) /
+    2;
+  if (amountRequest > limit) {
+    alert("You're requesting an amount greater than half your balance!");
+  } else if (amountRequest < limit) {
+    currentUser.movements.push(amountRequest);
+    diplayBanking(true, currentUser, false);
+  }
   requestModal.classList.toggle("hidden");
+});
+
+//Close account opening button
+openCloseAccountModalBtn.addEventListener("click", function () {
+  console.log("Reached");
+  closeAccountModal.classList.toggle("hidden");
 });

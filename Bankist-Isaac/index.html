@@ -88,6 +88,7 @@
       </main>
     </div>
 
+    <!-- Transfer money modal -->
     <div class="options_modal options_modal--transfer hidden">
       <div class="options_modal_inner">
         <button class="close_modal_btn">&times;</button>
@@ -102,24 +103,33 @@
       </div>
     </div>
 
+    <!-- Request money modal -->
     <div class="options_modal options_modal--request hidden">
       <div class="options_modal_inner">
         <button class="close_modal_btn">&times;</button>
         <h2 class="options_modal_heading">Request Money</h2>
         <form class="form form--transfer">
           <label class="form__label">Amount</label>
-          <input type="text" class="form_input form_input--to" />
+          <input type="number" class="form_input form_input--amount--request" />
           <button class="form_btn form_btn--request">Send Request</button>
         </form>
       </div>
     </div>
 
-    <!-- <div class="options_modal options_modal--request hidden">
+    <!--Close accoount button -->
+    <div class="options_modal options_modal--close-account hidden">
       <div class="options_modal_inner">
         <button class="close_modal_btn">&times;</button>
-        <h2 class="options_modal_heading">Transfer money</h2>
+        <h2 class="options_modal_heading">Close Account</h2>
+        <form class="form form--transfer">
+          <label class="form__label">Email</label>
+          <input type="email" class="form_input form_input--email" />
+          <label class="form__label">Password</label>
+          <input type="email" class="form_input form_input--password" />
+          <button class="form_btn form_btn--request">Close</button>
+        </form>
       </div>
-    </div> -->
+    </div>
 
     <script
       type="module"
