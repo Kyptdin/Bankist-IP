@@ -319,16 +319,21 @@ openCloseAccountModalBtn.addEventListener("click", function () {
 closeAccountSubmit.addEventListener("click", function (e) {
   e.preventDefault();
   console.log("Works");
-  if (accounts.some((acc) => acc.email === closeAccountEmailInput)) {
+  if (accounts.some((acc) => acc.email === closeAccountEmailInput.value)) {
     const tarAccount = accounts.find(
-      (acc) => acc.email === closeAccountEmailInput
+      (acc) => acc.email === closeAccountEmailInput.value
     );
-    if (tarAccount.password === closeAccountPasswordInput) {
-      const indexHi = accounts.indexOf(tarAccount);
-      console.log(indexHi);
-      console.log(accounts.indexOf(tarAccount));
-      // Hide the banking
-      //Show the login
+    if (tarAccount.password === closeAccountPasswordInput.value) {
+      const curAccountIndex = accounts.indexOf(tarAccount);
+      accounts.splice(curAccountIndex, 1);
+      alert("Account deletion successful");
+      loginModal.classList.toggle("hidden");
+      bankingUI.classList.toggle("hidden");
+      closeAccountModal.classList.toggle("hidden");
+    } else {
+      alert("Invalid input");
     }
+  } else {
+    alert("Invalid input");
   }
 });
